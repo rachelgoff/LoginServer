@@ -14,7 +14,7 @@ var routes = require("./routes");
 
 var app = express();
 //var uri = "mongodb://localhost:27017/pottery";
-var uri = "mongodb://username:password@dsxxxxx.mlab.com:xxx/pottery-users"
+var uri = "mongodb://username:password@dsxxxxx.mlab.com:27xxx/pottery-users"
 mongoose.connect(uri, { useNewUrlParser: true });
 
 setUpPassport();
