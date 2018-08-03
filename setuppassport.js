@@ -3,7 +3,6 @@ var LocalStrategy = require("passport-local").Strategy;
 var User = require("./models/user");
 
 module.exports = function() {
-
   passport.serializeUser(function(user, done) {
     done(null, user._id);
   });
@@ -15,22 +14,22 @@ module.exports = function() {
   });
 
   // Make sure you define usernameField and passwordField with your own parameters. Without the explicitly declaring, passport local won't work and will return bad request.
-    passport.use("login", new LocalStrategy(function(username, password, done) {
+  passport.use("login", new LocalStrategy(function(username, password, done) {
     User.findOne({ username: username }, function(err, user) {
       if (err) { return done(err); }
       if (!user) {
         return done(null, false, { message: "No user has that username!" });
       }
-      user.checkPassword(password, function(err, isMatch) {
-        if (err) { return done(err); }
-        if (isMatch) {
+        user.checkPassword(password, function(err, isMatch) {
+         if (err) { return done(err); }
+         if (isMatch) {
           return done(null, user);
-        } else {
+        } else
+        {
           return done(null, false, { message: "Invalid password." });
         }
       });
     });
   }));
-  
 };
 
