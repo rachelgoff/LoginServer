@@ -31,7 +31,6 @@ router.post("/login", passport.authenticate("login"), function(req, res){
     res.json({id: req.user.id, username: req.user.username});
   });
 
-
 router.get("/logout", function(req, res) {
   req.session = null;
   res.clearCookie("connect.sid");
@@ -42,7 +41,7 @@ router.post("/signup", function(req, res, next) {
   var username = req.body.username;
   var password = req.body.password;
 
-  User.findOne({ username: username }, function(err, user) {
+User.findOne({ username: username }, function(err, user) {
     if (err) { return next(err); }
     if (user) {
       req.flash("error", "User already exists");
